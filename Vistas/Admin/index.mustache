@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
+    <title>Login_Form</title>
+    <link rel="stylesheet" href="styleAdmin.css">
+</head>
+<body> 
+    <section class="container">
+
+    <div class="warning">
+    <span>{{error.Emailerr}} {{error.Passwerr}}</span>
+    </div>
+        <h2>Admin GeoAnimal</h2>
+        <form action="/AdminMode" method="post">
+            
+            <div class="input-field">
+                <input type="text" name="Gmail" id="username" value="{{Email}}"
+                    placeholder="Enter Your Username">
+                    
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="password" name="Password" id="password"
+                    placeholder="Enter Your Password" value="{{Password}}">
+                <div class="underline"></div>
+            </div>
+
+            <input type="submit" value="Continue">
+           
+        </form>
+
+        
+    </section>
+</body>
+</html>

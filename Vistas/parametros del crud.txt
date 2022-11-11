@@ -1,0 +1,19 @@
+Usuario
+*_id
+*Edad
+*Dirrecion
+*telefono
+*Cedula
+*Correo electronico
+*Contraseña
+
+Mascotas
+*nombre
+*Raza
+*Tipo
+*Peso
+*RecordVacunas
+*Enfermedades
+*Alergias
+*Latitud
+*Longitud

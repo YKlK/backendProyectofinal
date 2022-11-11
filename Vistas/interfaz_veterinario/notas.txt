@@ -1,0 +1,10 @@
+- mover el boton con el icono de usuario al final de la derecha en el "header".
+
+- hacer que el "nav" llegue hasta abajo de la página.
+
+- investigar como hacer para que cada boton cambie el formulario sin tener que cambiar de página.
+
+- en caso de que sea necesario recuerda que tienes la carpeta de html del curso de "Python sin fronteras" 
+ahí se encuentran muchos ejemplos.
+
+- investigar y proponer a Pedro sobre el "DataGridView" para que la página tenga una tabla de consultar a los usuario existentes.
