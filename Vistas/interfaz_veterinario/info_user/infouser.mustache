@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Información del usuario</title>
+        <link rel="stylesheet" href="styleinfouser.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1 class="titulo">Información del usuario</h1>
+        <div class="top-bar">
+            <div class="content-search">
+                {{#usuario}}
+                <h2>Id del Usuario <b>{{_id}}</b></h2>
+                {{/usuario}}
+            </div>
+            <form class="content" action="" method="">
+                <!-- Usuario -->
+                <div class="content-user">
+                    <h2>Usuario</h2>
+                    {{#usuario}}
+                    <label for="iname">Nombre del Usuario</label>
+                    <input id="iname" type="text" name="nombre-usuario" value="{{Nombre}}" disabled>
+                    <label for="iedad">Edad</label>
+                    <input id="iedad" type="number" name="edad" value="{{Edad}}" disabled>
+                    <label for="idirec">Dirección</label>
+                    <input id="idirec" type="text" name="direccion" value="{{Direccion}}" disabled>
+                    <label for="itel">Teléfono</label>
+                    <input id="itel" type="tel" name="telefono" value="{{telefono}}" maxlength="12" placeholder="000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" disabled>
+                    <label for="iced">Cédula</label>
+                    <input id="iced" type="text" name="cedula" value="{{Cedula}}" maxlength="13" placeholder="000-0000000-0" pattern="[0-9]{3}-[0-9]{7}-[0-9]{1}" disabled>
+                    <label for="icor-el">Correo electrónico</label>
+                    <input id="icor-el" type="email" name="correo-electronico" value="{{CorreoElectronico}}" disabled>
+                    <label for="ipass">Contraseña</label>
+                    <input id="ipass" type="text" name="contraseña" value="{{Contrasena}}" disabled>
+                    {{/usuario}}
+                    <br>
+                </div>
+                <!-- Mascota -->
+                <div class="content-animal">
+                    <h2>Mascota</h2>
+                    {{#mascota}}
+                    <label for="iname">Nombre de la Mascota</label>
+                    <input id="iname" type="text" name="nombre-animal" value="{{Nombre}}" disabled>
+                    <label for="itype">Tipo</label>
+                    <input id="itype" type="text" name="tipo" value="{{Tipo}}" disabled>
+                    <label for="iraza">Raza</label>
+                    <input id="iraza" type="text" name="raza" value="{{Raza}}" disabled>
+                    <label for="ipeso">Peso</label>
+                    <input id="ipeso" type="text" name="peso" value="{{Peso}}" disabled>
+                    <label for="i-re-vac">Record de Vacunas</label>
+                    <input id="i-re-vac" type="text" name="record-de-vacunas" value="{{RecordVacunas}}" disabled>
+                    <label for="ienf">Enfermedades</label>
+                    <input id="ienf" type="text" name="enfermedades" value="{{Enfermedades}}" disabled>
+                    <label for="ialer">Alergias</label>
+                    <input id="ialer" type="text" name="alergia" value="{{Alergias}}" disabled>
+                    {{/mascota}}
+                    <br>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
