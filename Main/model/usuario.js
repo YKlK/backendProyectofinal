@@ -30,4 +30,4 @@ UsuarioSchema.static("matchPassword" , async function(Contrasena,ContrasenaReciv
 
 })
 
-export default mongoose.model("Usuarios",UsuarioSchema)
+export default mongoose.model("usuarios",UsuarioSchema)

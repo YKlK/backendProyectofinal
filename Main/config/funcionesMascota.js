@@ -37,13 +37,13 @@ export const registrarmascota=async(req,res)=>{
   export const getmascotaById = async (req, res) => {
   const { ID_mascotas } = req.params;
   
-  const getmascotaid = await Mascotas.findById(ID_mascotas);
+  const getmascotaid = await Mascotas.findById(ID_mascotas).populate();
   res.status(200).json(getmascotaid);
   };
   
   //me servira para imprimir en pantallla todas las veterinarias disponibles papu
   export const getmascota = async (req, res) => {
-    const listadousers = await Mascotas.find();
+    const listadousers = await Mascotas.find().populate;
     return res.json(listadousers);
   };
   

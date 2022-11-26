@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Interfaz - usuario</title>
+        <link rel="stylesheet" href="style-interfaz-usuario.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- nav -->
+        <nav id="btns-crud" data-visible="false" class="btns-crud">
+            <div class="title desplegar">
+                <h1><i class="fa-solid fa-location-dot desplegar" aria-controls="btns-crud" aria-expanded="false"></i><span> GeoAminal</span></h1>
+            </div>
+            <hr class="hr-v">
+            <div class="content-btns">
+                <!-- Funcionabilidades -->
+                <a href="{{PerfilUser}}">
+                    <button class="btns btn-1"><i class="fa-solid fa-address-card"></i><span> Perfil</span></button>
+                </a>
+                <a href="{{mapDog}}" target="iframe_crud">
+                    <button class="btns btn-2"><i class="fa-sharp fa-solid fa-map-location"></i><span> Ubicación</span></button>
+                </a>
+            </div>
+            <hr class="hr-v">
+            <div class="content-btns">
+                <!-- Funciones Sesion -->
+                <div class="dropdown">
+                    <button class="btn-drop dropdown-btn"><i class="fa-solid fa-user"></i><span> Usuario</span></button>
+                    <div class="dropdown-content">
+                        <a href="#" class="sign-off"><i class="fa-solid fa-arrow-right-from-bracket"></i><span> Salir</span></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- iframe -->
+        <iframe name="iframe_crud" frameborder="0" src="inicio/inicio.html"></iframe>
+        <!-- iconos -->
+        <script src="script-interfaz-usuario.js"></script>
+        <script src="https://kit.fontawesome.com/bb8a84c377.js" crossorigin="anonymous"></script>
+    </body>
+</html>

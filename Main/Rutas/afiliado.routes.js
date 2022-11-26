@@ -1,12 +1,16 @@
 import { Router } from "express";
 const routerAfiliado = Router()
-import Usuario from "../model/usuario.js";
+import usuario from "../model/usuario.js";
 import { verifyTokenAdmin ,verifyTokenUser,verifyTokenVeterinarian} from "../middleware/authJwt.js";
 import { singinveterinaria } from "../config/funcionesveterinaria.js";
+import {dirname,join} from "node:path"
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 routerAfiliado.get("/signInVeterinarian",(req,res)=>{
     
-    res.render(require("path").join(__dirname,"..","..","Vistas","Login_Veterinaria_User","index"),
+    res.render(join(__dirname,"..","..","Vistas","Login_Veterinaria_User","login"),
     {
         title:"signInVeterinarian",
         path:"/signInVeterinarian",
@@ -17,31 +21,31 @@ routerAfiliado.get("/signInVeterinarian",(req,res)=>{
 
 
 routerAfiliado.get("/eliminar",(req,res)=>{
-    res.render(require("path").join(__dirname,"..","..","Vistas","interfaz_veterinario","eliminar","eliminar")) 
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","eliminar","eliminar")) 
 })
 routerAfiliado.get("/editar",(req,res)=>{
-    res.render(require("path").join(__dirname,"..","..","Vistas","interfaz_veterinario","editar","editar")) 
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","editar","editar")) 
 })
 
 routerAfiliado.get("/agregar",(req,res)=>{
-    res.render(require("path").join(__dirname,"..","..","Vistas","interfaz_veterinario","agregar","agregar")) 
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","agregar","agregar")) 
 }) 
 routerAfiliado.get("/mostrar",async (req,res)=>{
-    
-    const usuario = await Usuario.find() 
+
+    const Usuario = await usuario.find() 
     console.log(usuario)
     console.log(req.body) 
 
-    res.render(require("path").join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario})
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario:Usuario})
 })
  
-routerAfiliado.get("/mostrar/:user",async (req,res)=>{
+routerAfiliado.get("/mostrarUsuario/:user",async (req,res)=>{
     const {user} = req.params
-    const usuario = await Usuario.findById({_id:user}) 
-    console.log(usuario)
+    const Usuario = await usuario.findById({_id:user}) 
+    console.log(Usuario)
     console.log(req.body) 
 
-    res.render(require("path").join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrarUsuario","mostrar"),{usuario,
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrarUsuario","mostrarUsuario"),{usuario:Usuario,
     telefono:`N. Telefono`,
     cedula:`N. Cedula`,
     correo:`Correo Electronico`
@@ -49,8 +53,8 @@ routerAfiliado.get("/mostrar/:user",async (req,res)=>{
     })
 })
 
-routerAfiliado.get("/interfaz",verifyTokenUser,(req,res)=>{
-    res.render(require("path").join(__dirname,"..","..","Vistas","interfaz_veterinario","interfaz"),{
+routerAfiliado.get("/interfaz_veterinario",verifyTokenVeterinarian,(req,res)=>{
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","interfaz"),{
         agregar:"/agregar",
         editar:"/editar",
         eliminar:"/eliminar",
