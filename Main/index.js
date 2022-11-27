@@ -65,7 +65,7 @@ app.use(express.static(join(__dirname,"..","Vistas","Login_Veterinaria_User")));
 app.use(express.static(join(__dirname,"..","Vistas","Admin")));
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario")))
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","ubicacion")))
-// app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","perfil")))
+app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","perfil")))
 // app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","inicio")))
 // enviando los archivos al navedador
 

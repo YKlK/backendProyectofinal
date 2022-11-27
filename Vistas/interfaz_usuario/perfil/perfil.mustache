@@ -4,12 +4,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil Usuario</title>
-        <link rel="stylesheet" href="style-perfil.css">
+        
         <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./style-perfil-usuario.css">
     </head>
     <body>
         <section class="seccion-perfil-usuario">
@@ -29,21 +30,14 @@
             <div class="perfil-usuario-body">
                 <div class="perfil-usuario-footer">
                     <ul class="lista-datos">
-                        <li><i class="icono fas fa-map-signs"></i> Direccion: San Isidro, Cristo Salvador, C#16, Santo Domingo Este</li>
-                        <li><i class="icono fas fa-phone-alt"></i> Telefono: 829-202-7642</li>
-                        <li><i class="icono fas fa-briefcase"></i> Trabaja en:Instituto Tecnologico Superior Comunitario (I T S C)</li>
-                        <li><i class="icono fas fa-building"></i> Cargo: Professor</li> 
-                    </ul>
-                    <ul class="lista-datos">
-                        <li><i class="icono fas fa-calendar-alt"></i> Fecha nacimiento de la Mascota: 2022</li>
-                        <li><i class="icono fas fa-user-check"></i> Registro: Fue registrado en el 2021</li>
-                        <li><i class="icono fas fa-user-check"></i> Tipo de Mascota: Perro </li>
-                        <li><i class="icono fas fa-user-check"></i> Raza de la Mascota: bulldog </li>
+                    <li><i class="fa-solid fa-address-card"></i> Nombre: {{Nombre}}</li>
+                        <li><i class="icono fas fa-map-signs"></i> Direccion: {{Direccion}}</li>
+                        <li><i class="icono fas fa-phone-alt"></i> Telefono: {{telefono}}</li>
+                        <li><i class="icono fas fa-calendar-alt"></i> Edad: {{Edad}}</li>
+                        <li><i class="icono fas fa-user-check"></i> Correo Electronico: {{CorreoElectronico}}</li>
+                        <li><i class="icono fas fa-user-check"></i> Cedula: {{Cedula}} </li>
                     </ul>
                 </div>
-                <a href="/interfaz_usuario/interfaz-usuario.html">
-                    <button class="btns"><i class="fa-solid fa-arrow-turn-down-left"></i><span> Volver a la pagina anterior</span></button>
-                </a>
             </div>
         </section>
         <script src="https://kit.fontawesome.com/bb8a84c377.js" crossorigin="anonymous"></script>
