@@ -4,6 +4,7 @@ import {dirname,join} from "node:path"
 import { fileURLToPath } from 'url';
 import usuario from "../model/usuario.js";
 import jwt from "jsonwebtoken";
+import { verifyTokenUser } from "../middleware/authJwt.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const router = Router()
 router.get("/signInUser",(req,res)=>{
@@ -15,11 +16,22 @@ router.get("/signInUser",(req,res)=>{
         Password:"Contrasena"
     })
 })
+router.get("/GPSDog",(req,res)=>{
+    const id = jwt.verify(req.cookies.tokenUser,process.env.secretuser)
 
-router.get("/mapDog",(req,res)=>{
-    res.sendFile(join(__dirname,"..","..","Vistas","interfaz_usuario","ubicacion","map.html"))
+    res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","GPSMASCOTA","GPSmap.mustache"),{
+        room:id.id
+    })
 })
-router.get("/PerfilUser",async (req,res)=>{
+
+router.get("/mapDog",verifyTokenUser,(req,res)=>{
+    const id = jwt.verify(req.cookies.tokenUser,process.env.secretuser)
+
+    res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","ubicacion","map.mustache"),{
+        room:id.id
+    })
+})
+router.get("/PerfilUser",verifyTokenUser,async (req,res)=>{
     const veryfy = jwt.verify(req.cookies.tokenUser,process.env.secretuser)
     const user = await usuario.findById(veryfy.id)
     console.log(user)
@@ -36,7 +48,7 @@ router.get("/PerfilUser",async (req,res)=>{
         Cedula,
         CorreoElectronico})
 })
-router.get("/interfaz_usuario",(req,res)=>{
+router.get("/interfaz_usuario",verifyTokenUser,(req,res)=>{
     res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","interfaz-usuario.mustache"),{
         PerfilUser:"/PerfilUser",
         mapDog : "/mapDog"

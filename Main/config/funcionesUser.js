@@ -19,7 +19,7 @@ export const singinUser = async (req,res)=>{
       httpOnly:true
     })
   
-    res.redirect("/interfazU")
+    res.redirect("/interfaz_usuario")
   }
 
   export const registrarUsuario=async(req,res)=>{

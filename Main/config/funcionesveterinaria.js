@@ -19,7 +19,7 @@ export const singinveterinaria = async (req,res) => {
       httpOnly:true
     })
   
-    res.redirect("/interfazV")
+    res.redirect("/interfaz_veterinario")
   }
   
   
