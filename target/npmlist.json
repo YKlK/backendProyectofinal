@@ -1,0 +1,1 @@
+{"version":"1.0.0","name":"backendproyectofinal","dependencies":{"connect-flash":{"version":"0.1.1"},"crypto":{"version":"1.0.1"},"ejs":{"version":"3.1.8"},"express-session":{"version":"1.17.3"},"flash":{"version":"1.1.0"},"helmet":{"version":"6.0.0"},"nodemailer":{"version":"6.8.0"},"socket.io":{"version":"4.5.4"}}}

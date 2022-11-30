@@ -44,24 +44,24 @@ export const createAdmin = async() => {
     const veteri = await Veterinarias.estimatedDocumentCount()
 
     if(user>0 && admin>0 && veteri>0) {
-        await Admin.findOne({Gmail:"3JPI@gmail.com"})
+        await Admin.findOne({Gmail:process.env.AdminGmail})
 
-        await usuario.findOne({Gmail:"3JPI@gmail.com"})
+        await usuario.findOne({Gmail:process.env.AdminGmail})
 
-        await Veterinarias.findOne({Gmail:"3JPI@gmail.com"})
+        await Veterinarias.findOne({Gmail:process.env.AdminGmail})
 
         return};
     
     const newadmin =new Admin({
-      Gmail:"3JPI@gmail.com",
+      Gmail:process.env.AdminGmail,
       Password:process.env.AdminPassword
     })
-    
+
     newadmin.save()
     const newveterinaria = new Veterinarias({  
     NombreSucursal: "3JPI"
     ,Ubicacion :"en efecto"
-    ,GmailEmperesarial:"3JPI@gmail.com"
+    ,GmailEmperesarial:process.env.AdminGmail
     ,Contraseña: process.env.AdminPassword})
     newveterinaria.save()
 
@@ -69,7 +69,7 @@ export const createAdmin = async() => {
         Edad: 3,
         Direccion : "3JPI",
         telefono: 3791,
-        Cedula: "3JPI",CorreoElectronico:"3JPI@gmail.com",Contrasena:process.env.AdminPassword})
+        Cedula: "3JPI",CorreoElectronico:process.env.AdminGmail,Contrasena:process.env.AdminPassword})
 
     newuser.save()
 
