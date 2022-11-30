@@ -1,11 +1,12 @@
 import Usuarios from "../model/usuario.js"
 import jwt from "jsonwebtoken";
-export const singinUser = async (req,res)=>{
+ 
+  export const singinUser = async (req,res)=>{
     const userFound = await Usuarios.findOne({CorreoElectronico:req.body.CorreoElectronico});
   
     if (!userFound) return res.status(404).json({message:"noooo"})
     
-    const matchPassword = Usuarios.matchPassword(userFound.Contrasena,req.body.Contrasena)
+    const matchPassword =userFound.Contrasena==req.body.Contrasena
   
     if (!matchPassword) return res.status(401).json({token: null,message:"contraseña invalida como en los teleton xdxdxdd"})
     
@@ -41,7 +42,7 @@ export const singinUser = async (req,res)=>{
             telefono,
             Cedula,
             CorreoElectronico,
-            Contrasena:await Usuarios.encryptPassword(Contrasena),
+            Contrasena,
             Mascotas,
             Role:"Usuario"
     })
@@ -92,7 +93,7 @@ const updatedUSer = await Usuarios.findByIdAndUpdate(
   telefono,
   Cedula,
   CorreoElectronico,
-  Contrasena: await Usuarios.encryptPassword(Contrasena),
+  Contrasena,
   Mascotas,
   Role
 

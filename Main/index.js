@@ -67,6 +67,7 @@ app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario")))
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","ubicacion")))
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","GPSMASCOTA")))
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","perfil")))
+app.use(express.static(join(__dirname,"..","Vistas","404")))
 // app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","inicio")))
 // enviando los archivos al navedador
 
@@ -80,7 +81,7 @@ app.use(routerAdmin)
 app.use(routerAfiliado)
 app.use(router)
 app.use(function(req, res){
-    res.status(404).render("es/not-found.ejs", { title: "No encontrado" });
+    res.status(404).render("./../Vistas/404/404.mustache", { title: "No encontrado" });
 });
 //Rutas^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

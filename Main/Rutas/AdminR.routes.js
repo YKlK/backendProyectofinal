@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-routerAdmin.post("/api/RegisterVeterinaria",[verify.checkExistingVeterinarian,auth.verifyTokenAdmin],registrarveterinaria)
+routerAdmin.post("/api/RegisterVeterinaria",registrarveterinaria)
 routerAdmin.get("/api/GetVeterinaria/:ID_veterinaria",auth.verifyTokenAdmin,getVeterinariaById)
 routerAdmin.get("/api/GetVeterinarias",auth.verifyTokenAdmin,getVeterinarias)
 routerAdmin.put("/api/ActualizarVeterinaria/:veterinaria",auth.verifyTokenAdmin,actualizarVeterinaria)

@@ -2,17 +2,22 @@ import Veterinarias from "../model/Veterinarias.js"
 import jwt from "jsonwebtoken";
 
 export const singinveterinaria = async (req,res) => {
-    const veterinariaFound = await Veterinarias.findOne({GmailEmperesarial:req.body.GmailEmperesarial})
-    if (!veterinariaFound) return res.status(404).json({message:"noooo"})
-    
-    const matchPassword = Veterinarias.matchPassword(veterinariaFound.Contraseña,req.body.Contraseña)
-  
-    if (!matchPassword) return res.status(401).json({token: null,message:"contraseña invalida como en los teleton xdxdxdd"})
-    
-    const token = jwt.sign({id:veterinariaFound._id},process.env.secretveterinarian,{expiresIn:"1d"})
+  const {Contraseña,GmailEmperesarial} = req.body
+
     if(req.cookies.tokenAdmin) res.clearCookie("tokenAdmin")
     if(req.cookies.tokenVeterinaria) res.clearCookie("tokenVeterinaria")
     if(req.cookies.tokenUser) res.clearCookie("tokenUser")
+
+    const veterinariaFound = await Veterinarias.findOne({GmailEmperesarial:GmailEmperesarial})
+
+    if (!veterinariaFound){ return res.status(404).json({message:"noooo"})}
+
+    const matchPassword = Contraseña==veterinariaFound.Contraseña
+
+    if (!matchPassword) return res.status(401).json({token: null,message:"contraseña invalida como en los teleton xdxdxdd"})
+    
+    const token = jwt.sign({id:veterinariaFound._id},process.env.secretveterinarian,{expiresIn:"1d"})
+    
     res.cookie("tokenVeterinaria",token,{
       sameSite:"strict",
       maxAge:86400000,
@@ -38,7 +43,7 @@ export const singinveterinaria = async (req,res) => {
         NombreSucursal,
         Ubicacion,
         GmailEmperesarial,
-        Contraseña:await Veterinarias.encryptPassword(Contraseña),
+        Contraseña,
         Role:"Veterinaria"
       })
             
@@ -121,7 +126,7 @@ export const singinveterinaria = async (req,res) => {
         NombreSucursal,
       Ubicacion ,
       GmailEmperesarial,
-      Contraseña:await Veterinarias.encryptPassword(Contraseña) ,
+      Contraseña,
       Role
        },
         {

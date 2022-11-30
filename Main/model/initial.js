@@ -52,20 +52,26 @@ export const createAdmin = async() => {
 
         return};
     
-    new Admin({Gmail:"3JPI@gmail.com", Password: await Admin.encryptPassword(process.env.AdminPassword)}).save()
-    new Veterinarias({  NombreSucursal: "3JPI",Ubicacion :"en efecto",GmailEmperesarial:"3JPI@gmail.com", Contraseña: await Veterinarias.encryptPassword(process.env.AdminPassword)}).save()
+    const newadmin =new Admin({
+      Gmail:"3JPI@gmail.com",
+      Password:process.env.AdminPassword
+    })
     
-      
+    newadmin.save()
+    const newveterinaria = new Veterinarias({  
+    NombreSucursal: "3JPI"
+    ,Ubicacion :"en efecto"
+    ,GmailEmperesarial:"3JPI@gmail.com"
+    ,Contraseña: process.env.AdminPassword})
+    newveterinaria.save()
 
-
-   new usuario({Nombre: "3JPI",
+   const newuser=new usuario({Nombre: "3JPI",
         Edad: 3,
         Direccion : "3JPI",
         telefono: 3791,
-        Cedula: "3JPI",CorreoElectronico:"3JPI@gmail.com", Contrasena: await initadmin.encryptPassword(process.env.AdminPassword)}).save()
+        Cedula: "3JPI",CorreoElectronico:"3JPI@gmail.com",Contrasena:process.env.AdminPassword})
 
-
-    
+    newuser.save()
 
      
 } 

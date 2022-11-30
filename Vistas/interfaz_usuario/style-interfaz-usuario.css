@@ -284,6 +284,38 @@ iframe {
         width: 80px;
     }
 
+    /* desplegar nav */
+    .btns-crud {
+        transition: all 100ms ease-out;
+        width: 80px;
+    }
+
+    .btns-crud[data-visible="true"] {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        top: 0;
+        align-items: center;
+        right: 0;
+        flex-direction: column;
+        transition: all 100ms ease-in;
+    }
+
+    .btns-crud[data-visible="true"] .content-btns .dropdown:hover .dropdown-content {
+        margin-top: 55px;
+        margin-left: 45px;
+    }
+
+    .btns-crud[data-visible="true"] .hr-v {
+        padding: 0 50px;
+        border: 1px solid #000;
+    }
+
+    .btns-crud[data-visible="true"] span {
+        display: contents;
+    }
+
     /* iframe */
     iframe {
         margin-left: 80px;
@@ -311,10 +343,6 @@ iframe {
         justify-content: center;
     }
 
-    /*.dropdown {
-
-    }*/
-
     nav {
         width: 80px;
     }
@@ -325,3 +353,65 @@ iframe {
     }
 }
 
+@media (min-width: 500px) and (max-width: 720px) {
+    /* nav */
+    nav h1 {
+        display: flex;
+        justify-content: center;
+    }
+
+    nav span {
+        display: none;
+    }
+
+    nav a {
+        display: flex;
+        justify-content: center;
+    }
+
+    nav .dropdown {
+        display: flex;
+        justify-content: center;
+    }
+
+    nav {
+        width: 80px;
+    }
+
+    /* desplegar nav */
+    .btns-crud {
+        transition: all 100ms ease-out;
+        width: 80px;
+    }
+
+    .btns-crud[data-visible="true"] {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        top: 0;
+        align-items: center;
+        right: 0;
+        flex-direction: column;
+        transition: all 100ms ease-in;
+    }
+
+    .btns-crud[data-visible="true"] .content-btns .dropdown:hover .dropdown-content {
+        margin-top: 55px;
+        margin-left: 45px;
+    }
+
+    .btns-crud[data-visible="true"] .hr-v {
+        padding: 0 50px;
+        border: 1px solid #000;
+    }
+
+    .btns-crud[data-visible="true"] span {
+        display: contents;
+    }
+
+    /* iframe */
+    iframe {
+        margin-left: 80px;
+    }
+}
