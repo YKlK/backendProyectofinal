@@ -2,9 +2,10 @@ import { Router } from "express";
 const routerAfiliado = Router()
 import usuario from "../model/usuario.js";
 import { verifyTokenAdmin ,verifyTokenUser,verifyTokenVeterinarian} from "../middleware/authJwt.js";
-import { singinveterinaria } from "../config/funcionesveterinaria.js";
+import { singinveterinaria ,agregarUsuarioyMascota} from "../config/funcionesveterinaria.js";
 import {dirname,join} from "node:path"
 import { fileURLToPath } from 'url';
+import { checkExistingUser } from "../middleware/verifySignup.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -61,7 +62,9 @@ routerAfiliado.get("/interfaz_veterinario",verifyTokenVeterinarian,(req,res)=>{
         mostrar:"/mostrar"
     })
 })
-routerAfiliado.post("/signInVeterinarian",singinveterinaria)
+routerAfiliado.post("/signInVeterinarian",checkExistingUser,singinveterinaria)
 // routerAfiliado.post("/signInVeterinarian",singinveterinaria)
+routerAfiliado.post("/api/agregarUsuarioMascota",agregarUsuarioyMascota)
+
 
 export default routerAfiliado

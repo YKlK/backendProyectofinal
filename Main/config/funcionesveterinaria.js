@@ -1,5 +1,9 @@
 import Veterinarias from "../model/Veterinarias.js"
+import usuario from "../model/usuario.js"
+import Mascotas from "../model/Mascotas.js";
 import jwt from "jsonwebtoken";
+
+
 
 export const singinveterinaria = async (req,res) => {
     try{
@@ -119,4 +123,34 @@ export const singinveterinaria = async (req,res) => {
           res.status(401).json(err);}
         };
   
+
+    export const agregarUsuarioyMascota = async (req,res)=>{
+      try{
+          const {username,edad,direccion,telefono,cedula,email,nombreAnimal,raza,tipo,tamano,color,peso} = req.body;
+
+          const user = await usuario.create({
+            Nombre: username,
+            Edad: edad,
+            Direccion : direccion,
+            telefono: telefono,
+            Cedula: cedula,
+            CorreoElectronico: email,
+            Contrasena: cedula,
+          })
+
+          const Mascota = await Mascotas.create({
+            Nombre:nombreAnimal,
+            Propietario:user,
+            tamano:tamano,
+            Color:color,
+            Raza:raza,
+            Tipo:tipo,
+            Peso:peso,})
+
+          
+            res.redirect("/agregaralgo")
+          }
+          catch(err){
+            res.status(401).json(err);}
+        }
   

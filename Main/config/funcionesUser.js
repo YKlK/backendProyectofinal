@@ -23,6 +23,7 @@ import jwt from "jsonwebtoken";
     res.redirect("/interfaz_usuario")
   }
 
+
   export const registrarUsuario=async(req,res)=>{
     try{
       const {

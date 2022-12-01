@@ -4,9 +4,10 @@ const enfermedades = mongoose.Schema({
     RecordVacunas:[String],
     Enfermedades:[String],
     Alergias:[String],
-    cirugias:[String]
+    cirugias:[String],
+    Fecha
 },{
     versionKey : false
 })
 
-export default mongoose.model("patologias",enfermedades)
+export default mongoose.model("Revicion",enfermedades)

@@ -56,7 +56,7 @@ form label {
 }
 
 .content-btn {
-    display: flex;
+    display: block;
     margin-left: 10px;
     margin-right: 20px;
 }
