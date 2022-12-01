@@ -3,6 +3,7 @@ const routerAdmin = Router()
 
 import * as auth from "./../middleware/authJwt.js"
 import * as verify from "./../middleware/verifySignup.js";
+
 import {registrarmascota,getmascota,getmascotaById,actualizarmascota,deletemascotaById} from "./../config/funcionesMascota.js"
 import { registrarveterinaria ,getVeterinariaById , getVeterinarias ,actualizarVeterinaria,deleteVeterinariaById  } from "../config/funcionesveterinaria.js";
 import { registrarUsuario,getusuarioById,getusuarios,actualizarusuarios,deleteusuarioById } from "../config/funcionesUser.js";
@@ -12,7 +13,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-routerAdmin.post("/api/RegisterVeterinaria",registrarveterinaria)
+routerAdmin.post("/api/RegisterVeterinaria",[verify.checkExistingVeterinarian,auth.verifyTokenAdmin],registrarveterinaria)
 routerAdmin.get("/api/GetVeterinaria/:ID_veterinaria",auth.verifyTokenAdmin,getVeterinariaById)
 routerAdmin.get("/api/GetVeterinarias",auth.verifyTokenAdmin,getVeterinarias)
 routerAdmin.put("/api/ActualizarVeterinaria/:veterinaria",auth.verifyTokenAdmin,actualizarVeterinaria)

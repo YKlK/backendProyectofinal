@@ -24,55 +24,59 @@ import jwt from "jsonwebtoken";
   }
 
   export const registrarUsuario=async(req,res)=>{
-    const {
-            Nombre,
-            Edad,
-            Direccion ,
-            telefono,
-            Cedula,
-            CorreoElectronico,
-            Contrasena,
-            Mascotas,
-            }  =  req.body 
-                    
-    const user = new Usuarios({
-            Nombre,
-            Edad,
-            Direccion ,
-            telefono,
-            Cedula,
-            CorreoElectronico,
-            Contrasena,
-            Mascotas,
-            Role:"Usuario"
-    })
-    
-    
-
-    const token = await user.save() 
-
-    const JWT = jwt.sign({id:token._id},process.env.secret)
-
-    console.log(JWT)
-    res.status(200).json(JWT)
+    try{
+      const {
+              Nombre,
+              Edad,
+              Direccion ,
+              telefono,
+              Cedula,
+              CorreoElectronico,
+              Contrasena,
+              }  =  req.body 
+                      
+      const user = new Usuarios({
+              Nombre,
+              Edad,
+              Direccion ,
+              telefono,
+              Cedula,
+              CorreoElectronico,
+              Contrasena,
+      })
+      const token = await user.save() 
+      const JWT = jwt.sign({id:token._id},process.env.secret)
+      
+      res.status(200).json(JWT)}
+    catch(err){
+      res.status(401).json();
+    }
 }
 //me servira para imprimir en pantallla una sola veterinaria que tenga ese id papu
 
 export const getusuarioById = async (req, res) => {
-const { ID_User } = req.params;
-
-const getuserid = await Usuarios.findById(ID_User);
-res.status(200).json(getuserid);
+  try{
+    const { ID_User } = req.params;
+    const getuserid = await Usuarios.findById(ID_User);
+    res.status(200).json(getuserid);
+  }catch(err){
+    res.status(401).json();
+  }
 };
 
 //me servira para imprimir en pantallla todas las veterinarias disponibles papu
 export const getusuarios = async (req, res) => {
+  try{
     const listadousers = await Usuarios.find();
     return res.json(listadousers);
-  };
+  }
+  catch(err){
+  res.status(401).json();
+  }};
 
 //me servira para actualizar la triple pta veterinaria (borrar al rato)
 export const actualizarusuarios = async (req, res) => {
+  try{
   const {
     Nombre,
     Edad,
@@ -80,9 +84,7 @@ export const actualizarusuarios = async (req, res) => {
     telefono,
     Cedula,
     CorreoElectronico,
-    Contrasena,
-    Mascotas,
-    Role}  =  req.body
+    Contrasena,}  =  req.body
 
 const updatedUSer = await Usuarios.findByIdAndUpdate(
   req.params.User,
@@ -94,23 +96,25 @@ const updatedUSer = await Usuarios.findByIdAndUpdate(
   Cedula,
   CorreoElectronico,
   Contrasena,
-  Mascotas,
-  Role
-
  },
   {
     new: true,
   }
 );
-res.status(200).json(updatedUSer);
-};
+res.status(200).json(updatedUSer);}
+catch(err){
+  res.status(401).json();
+}};
 
 
 //borrar atraves del id alv
 export const deleteusuarioById = async (req, res) => {
+  try{
     const { user } = req.params;
   
     await Usuarios.findByIdAndDelete(user);
   
     res.status(200).json();
-  };
+  }catch(err){
+    res.status(401).json();
+  }};

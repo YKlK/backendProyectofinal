@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 export const verifyTokenAdmin = async (req, res, next) => {
   let token = req.cookies.tokenAdmin;
   // console.log(req.cookies.token)
-  if (!token) return res.status(403).json({ message: "No token provided" });
+  if (!token) return res.redirect("/AdminMode");
 
   try {
     const decoded = jwt.verify(token, process.env.secretadmin);
@@ -22,7 +22,7 @@ export const verifyTokenAdmin = async (req, res, next) => {
 export const verifyTokenVeterinarian = async (req, res, next) => {
   let token = req.cookies.tokenVeterinaria;
   // console.log(req.cookies.token)
-  if (!token) return res.status(403).json({ message: "No token provided" });
+  if (!token) return res.redirect("/signInVeterinarian");
 
   try {
     const decoded = jwt.verify(token, process.env.secretveterinarian);
@@ -40,7 +40,7 @@ export const verifyTokenVeterinarian = async (req, res, next) => {
 export const verifyTokenUser = async (req, res, next) => {
   let token = req.cookies.tokenUser;
   // console.log(req.cookies.token)
-  if (!token) return res.status(403).json({ message: "No token provided" });
+  if (!token) return res.redirect("/signInUser");
 
   try {
     const decoded = jwt.verify(token, process.env.secretuser);

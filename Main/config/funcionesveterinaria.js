@@ -2,8 +2,11 @@ import Veterinarias from "../model/Veterinarias.js"
 import jwt from "jsonwebtoken";
 
 export const singinveterinaria = async (req,res) => {
-  const {Contraseña,GmailEmperesarial} = req.body
-
+    try{
+      
+    const {Contraseña,GmailEmperesarial} = req.body
+    if(GmailEmperesarial=="") new Error("Gmail Vacio")
+    if(Contraseña=="") new Error("Contraseña Vacio")
     if(req.cookies.tokenAdmin) res.clearCookie("tokenAdmin")
     if(req.cookies.tokenVeterinaria) res.clearCookie("tokenVeterinaria")
     if(req.cookies.tokenUser) res.clearCookie("tokenUser")
@@ -24,11 +27,11 @@ export const singinveterinaria = async (req,res) => {
       httpOnly:true
     })
   
-    res.redirect("/interfaz_veterinario")
+    res.redirect("/interfaz_veterinario")}
+    catch(err){
+      res.status(401).send(err.message)
+    }
   }
-  
-  
-  
   
   export const registrarveterinaria=async(req,res)=>{
     try{      
@@ -44,12 +47,8 @@ export const singinveterinaria = async (req,res) => {
         Ubicacion,
         GmailEmperesarial,
         Contraseña,
-        Role:"Veterinaria"
       })
             
-     
-      
-  
       const token = await veteri.save() 
   
       const JWT = jwt.sign({veteri_id:token._id},process.env.secret)
@@ -57,92 +56,67 @@ export const singinveterinaria = async (req,res) => {
       res.status(200).json(JWT)
     }
     catch(err){
-      console.log(err)
+      res.status(401).json({err})
     }
   }
-  //       try {
-  //         const { NombreSucursal,
-  //                     Ubicacion ,
-  //                     GmailEmperesarial,
-  //                     Contraseña ,
-  //                     roles } = req.body;
-      
-  //         const rolesFound = await Admin_role.find({ name: roles });
-      
-  //         // creating a new User
-  //         const user = new Veterinarias({
-  //           NombreSucursal,
-  //                 Ubicacion,
-  //                 GmailEmperesarial,
-  //                 Contraseña:await Veterinarias.encryptPassword(Contraseña),
-  //           Roles: rolesFound.map((role:any) => role._id)
-  //         });
-      
-  //         // encrypting password
-          
-      
-  //         // saving the new user
-  //         const savedUser = await user.save();
-      
-  //         return res.status(200).json({
-  //           _id: savedUser._id,
-  //           username: savedUser.username,
-  //           email: savedUser.email,
-  //           roles: savedUser.roles,
-  //         });
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  
-  
-  
-  
   
   //me servira para imprimir en pantallla una sola veterinaria que tenga ese id papu
   export const getVeterinariaById = async (req, res) => {
-      const { ID_veterinaria } = req.params;
+    try{  
+    const { ID_veterinaria } = req.params;
     
       const getveterinariaid = await Veterinarias.findById(ID_veterinaria);
       res.status(200).json(getveterinariaid);
+    }
+    catch(err){
+      res.status(401).json({err})
+    }
+
     }; 
   //me servira para imprimir en pantallla todas las veterinarias disponibles papu
-    export const getVeterinarias = async (req, res) => {
+  export const getVeterinarias = async (req, res) => {
   
           const listadoVeterinarias = await Veterinarias.find();
           return res.json(listadoVeterinarias);
         };
   //me servira para actualizar la triple pta veterinaria (borrar al rato)
   export const actualizarVeterinaria = async (req, res) => {
+    try{
     const {
       NombreSucursal,
       Ubicacion ,
       GmailEmperesarial,
       Contraseña ,
-      Role}=  req.body 
+      }=  req.body 
   
-      const updatedProduct = await Veterinarias.findByIdAndUpdate(
+      const updatedVeterinarian = await Veterinarias.findByIdAndUpdate(
         req.params.veterinaria,
        {
-        NombreSucursal,
+      NombreSucursal,
       Ubicacion ,
       GmailEmperesarial,
       Contraseña,
-      Role
        },
         {
           new: true,
         }
       );
-      res.status(200).json(updatedProduct);
-    };
+      res.status(200).json(updatedVeterinarian);
+    }
+    catch(err){
+      res.status(401).json({err})
+    }};
+
   //borrar atraves del id alv
     export const deleteVeterinariaById = async (req, res) => {
+        try{
           const { veterinaria } = req.params;
         
-          await Veterinarias.findByIdAndDelete(veterinaria);
-        
-          
+          const veteri = await Veterinarias.findByIdAndDelete(veterinaria);
           res.status(200).json();
+        }
+        catch(err){
+          res.status(401).json(err);}
         };
   
   

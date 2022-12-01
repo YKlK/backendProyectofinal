@@ -34,6 +34,6 @@ export const singinAdmin = async(req,res)=>{
     httpOnly:true
   })
 
-  res.redirect("/nose")
+  res.redirect("/")
 }
 

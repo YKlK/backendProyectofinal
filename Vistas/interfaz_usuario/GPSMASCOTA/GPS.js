@@ -18,7 +18,7 @@ const socket = io.connect();
 map.locate({enableHighAccuracy: true})
 map.on('locationfound', (e) => {
   const userIcon = L.icon({
-    iconUrl: './../img/logo.png',
+    iconUrl: './../img/ummmpatas.png',
     iconSize: [38, 42],
     iconAnchor:   [22, 94]
   })
@@ -36,7 +36,7 @@ map.on('locationfound', (e) => {
    
     console.log(coords);
     const userIcon = L.icon({
-      iconUrl: './../img/logo.png',
+      iconUrl: './../img/ummmpatas.png',
       iconSize: [38, 42],
       iconAnchor:   [22, 94]
     })

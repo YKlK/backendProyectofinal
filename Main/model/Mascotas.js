@@ -7,7 +7,7 @@ const MascotasSchema= mongoose.Schema({
     Raza:String,
     Tipo:String,
     Peso:String,
-    enfermedades:[{type:mongoose.Schema.Types.ObjectId,ref:"patologias"}]
+    Enfermedades:[{type:mongoose.Schema.Types.ObjectId,ref:"patologias"}]
 },{
     versionKey : false
 })

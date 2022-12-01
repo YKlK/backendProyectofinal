@@ -68,7 +68,8 @@ app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","ubicacio
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","GPSMASCOTA")))
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","perfil")))
 app.use(express.static(join(__dirname,"..","Vistas","404")))
-// app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario","inicio")))
+app.use(express.static(join(__dirname,"..","Vistas","Message")))
+
 // enviando los archivos al navedador
 
 

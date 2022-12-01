@@ -1,5 +1,6 @@
 import { Router } from "express"
 import {dirname,join} from "node:path"
+
 import { fileURLToPath } from 'url';
 import transporter from "../config/Emails.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -14,5 +15,13 @@ export default route
 route.post("/api/sendemail",(req,res)=>{
 const {nombre,email,asunto,mensaje} = req.body
     transporter(nombre,email,asunto,mensaje)
-    res.send("ni idea")
+    res.redirect("/")
 })
+
+route.get("/logOut",(req,res)=>{
+    if(req.cookies.tokenAdmin) res.clearCookie("tokenAdmin")
+    if(req.cookies.tokenVeterinaria) res.clearCookie("tokenVeterinaria")
+    if(req.cookies.tokenUser) res.clearCookie("tokenUser")
+    res.redirect("/")
+})
+
