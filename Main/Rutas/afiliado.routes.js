@@ -1,6 +1,7 @@
 import { Router } from "express";
 const routerAfiliado = Router()
 import usuario from "../model/usuario.js";
+import Mascotas from "../model/Mascotas.js";
 import { verifyTokenAdmin ,verifyTokenUser,verifyTokenVeterinarian} from "../middleware/authJwt.js";
 import { singinveterinaria ,agregarUsuarioyMascota} from "../config/funcionesveterinaria.js";
 import {dirname,join} from "node:path"
@@ -33,11 +34,11 @@ routerAfiliado.get("/agregar",(req,res)=>{
 }) 
 routerAfiliado.get("/mostrar",async (req,res)=>{
 
-    const Usuario = await usuario.find() 
-    console.log(usuario)
+    const mascota = await Mascotas.find().populate('Propietario')
+    console.log(mascota)
     console.log(req.body) 
 
-    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario:Usuario})
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario:mascota})
 })
  
 routerAfiliado.get("/mostrarUsuario/:user",async (req,res)=>{
