@@ -6,9 +6,11 @@ import { verifyTokenAdmin ,verifyTokenUser,verifyTokenVeterinarian} from "../mid
 import { singinveterinaria ,agregarUsuarioyMascota} from "../config/funcionesveterinaria.js";
 import {dirname,join} from "node:path"
 import { fileURLToPath } from 'url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 import { checkExistingUser } from "../middleware/verifySignup.js";
 import {agregarenfermedad} from "./../config/funcionesEnfermedades.js"
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import router from "./usuario.routes.js";
+
 
 routerAfiliado.get("/signInVeterinarian",(req,res)=>{
     
@@ -21,6 +23,9 @@ routerAfiliado.get("/signInVeterinarian",(req,res)=>{
     })
 })
 
+router.get("/nuevaVisita",(req,res)=>{
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","patologia","agregar-patologia.mustache"))
+})
 
 routerAfiliado.get("/eliminar",(req,res)=>{
     res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","eliminar","eliminar")) 
@@ -33,13 +38,28 @@ routerAfiliado.get("/agregar",(req,res)=>{
     res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","agregar","agregar")) 
 }) 
 routerAfiliado.get("/mostrar",async (req,res)=>{
-
+    const {cedula} = req.query
+    if(cedula){
+        try{
+        const us = await usuario.findOne({Cedula:cedula})
+        const mascota = await Mascotas.findOne({'Propietario':us._id}).populate('Propietario')
+        console.log(mascota)
+        console.log(req.query) 
+        res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario:mascota})}
+        catch(err){
+            console.log("enviaste mal la cedula")
+        }
+    }else{
+        try{
     const mascota = await Mascotas.find().populate('Propietario')
     console.log(mascota)
     console.log(req.body) 
-
     res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario:mascota})
-})
+    }
+    catch(err){
+        console.log("algo salio mal")
+    }
+}})
  
 routerAfiliado.get("/mostrarUsuario/:user",async (req,res)=>{
     const {user} = req.params

@@ -12,11 +12,12 @@
     </head>
     <body>
         <h1 class="titulo">Mostrar Usuarios</h1>
-        <div class="content-search">
+        <form action="/mostrar" method="GET" class="content-search">
             <!-- Buscar id -->
-            <input id="icel" type="search" name="id" placeholder="Cédula del Usuario" class="sg8">
+            
+            <input id="icel" type="search" name="cedula" placeholder="Cédula del Usuario" class="sg8">
             <input type="submit" value="Buscar" class="btn">
-        </div>
+        </form >
         <div class="container">
             <table class="content-table">
                 <thead>
@@ -55,7 +56,6 @@
                         </td> 
                     </tr>
                         {{/usuario}}
-                   
                 </tbody>
             </table>
         </div>

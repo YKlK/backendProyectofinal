@@ -30,25 +30,51 @@
                 <tbody>
                 {{#usuario}}
                     <tr>
+
+                        <td data-label="Id:"><b>{{_id}}</b></td>
+                        <td data-label="Usuario:"><b>{{Propietario.Nombre}}</b></td>
+                        <td data-label="Telefono:"><b>{{Propietario.telefono}}</b></td>
+                        <td data-label="Cédula:"><b>{{Propietario.Cedula}}</b></td>
+                        <td data-label="Correo:"><b>{{Propietario.CorreoElectronico}}</b></td>
+                        <td data-label="Nombre:"><b>{{Nombre}}</b></td>
+                        <td data-label="Tamaño:"><b>{{tamano}}</b></td>
+                        <td data-label="Tipo:"><b>{{Tipo}}</b></td>
+                        <td data-label="Peso:"><b>{{Peso}}</b></td>
+                        <td data-label="Raza:"><b>{{Raza}}</b></td> 
                         
-                        
-                        <td><b>{{_id}}</b></td>
-                        <td><b>{{Propietario.Nombre}}</b></td>
-                        <td><b>{{Propietario.telefono}}</b></td>
-                        <td><b>{{Propietario.Cedula}}</b></td>
-                        <td><b>{{Propietario.CorreoElectronico}}</b></td>
-                        <td><b>{{Nombre}}</b></td>
-                        <td><b>{{tamano}}</b></td>
-                        <td><b>{{Tipo}}</b></td>
-                        <td><b>{{Peso}}</b></td>
-                        <td><b>{{Raza}}</b></td>
-                        
-                        <!--{{#mascota}}
-                        <td><b>{{Nombre}}</b></td>
-                        <td><b>{{Tipo}}</b></td>
-                        {{/mascota}}-->
                     </tr>
                     {{/usuario}}
+
+
+                </tbody>
+            </table>
+
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        
+                        
+                      
+                        <th>tamaño</th>
+                        <th>Tipo</th>
+                        <th>Peso</th>
+                        <th>Raza</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#usuario}}
+                    <tr>
+
+                        
+                        <td data-label="Tamaño:"><b>{{tamano}}</b></td>
+                        <td data-label="Tipo:"><b>{{Tipo}}</b></td>
+                        <td data-label="Peso:"><b>{{Peso}}</b></td>
+                        <td data-label="Raza:"><b>{{Raza}}</b></td> 
+                        
+                    </tr>
+                    {{/usuario}}
+
+                    
                 </tbody>
             </table>
         </div>

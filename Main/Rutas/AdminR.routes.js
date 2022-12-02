@@ -10,8 +10,8 @@ import { registrarUsuario,getusuarioById,getusuarios,actualizarusuarios,deleteus
 import { singinAdmin } from "../config/funcionesAdmin.js";
 import {dirname,join} from "node:path"
 import { fileURLToPath } from 'url';
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
 
 routerAdmin.post("/api/RegisterVeterinaria",[verify.checkExistingVeterinarian,auth.verifyTokenAdmin],registrarveterinaria)
 routerAdmin.get("/api/GetVeterinaria/:ID_veterinaria",auth.verifyTokenAdmin,getVeterinariaById)
@@ -33,13 +33,13 @@ routerAdmin.delete("/api/Deletemascota/:mascotas",deletemascotaById)
 
 routerAdmin.get("/AdminMode",(req,res)=>{
     res.setHeader('Content-Type', 'text/html');
-    res.render(require("path").join(__dirname,"..","..","Vistas","Admin"))
+    res.render(join(__dirname,"..","..","Vistas","Admin"))
 })
 routerAdmin.post("/AdminMode",singinAdmin)
 
 routerAdmin.get('/AdminMode/Dashboard',(req,res)=>{
     res.setHeader('Content-Type', 'text/html');
-    res.render(require("path").join(__dirname,"..","..","Vistas","AdminDash"))
+    res.render(join(__dirname,"..","..","Vistas","AdminDash"))
 })
 
 export default routerAdmin;

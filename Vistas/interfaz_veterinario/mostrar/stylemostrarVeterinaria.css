@@ -138,7 +138,7 @@ td a {
 
 /* Medias */
 
-@media (min-width: 339px) and (max-width: 844px) {
+@media (min-width: 339px) and (max-width: 1015px) {
     .content-table tbody tr:nth-of-type(even) {
         background-color: #ffffff;
     }
@@ -325,5 +325,53 @@ td a {
 @media (min-width: 831px) and (max-width: 844px) {
     .content-table {
         min-width: 600px;
+    }
+}
+
+@media (min-width: 845px) and (max-width: 865px) {
+    .content-table {
+        min-width: 620px;
+    }
+}
+
+@media (min-width: 866px) and (max-width: 885px) {
+    .content-table {
+        min-width: 640px;
+    }
+}
+
+@media (min-width: 886px) and (max-width: 905px) {
+    .content-table {
+        min-width: 660px;
+    }
+}
+
+@media (min-width: 906px) and (max-width: 925px) {
+    .content-table {
+        min-width: 680px;
+    }
+}
+
+@media (min-width: 926px) and (max-width: 945px) {
+    .content-table {
+        min-width: 700px;
+    }
+}
+
+@media (min-width: 946px) and (max-width: 965px) {
+    .content-table {
+        min-width: 720px;
+    }
+}
+
+@media (min-width: 966px) and (max-width: 985px) {
+    .content-table {
+        min-width: 740px;
+    }
+}
+
+@media (min-width: 986px) and (max-width: 1015px) {
+    .content-table {
+        min-width: 760px;
     }
 }
