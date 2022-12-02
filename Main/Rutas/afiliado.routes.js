@@ -7,7 +7,7 @@ import { singinveterinaria ,agregarUsuarioyMascota} from "../config/funcionesvet
 import {dirname,join} from "node:path"
 import { fileURLToPath } from 'url';
 import { checkExistingUser } from "../middleware/verifySignup.js";
-
+import {agregarenfermedad} from "./../config/funcionesEnfermedades.js"
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 routerAfiliado.get("/signInVeterinarian",(req,res)=>{
@@ -43,15 +43,11 @@ routerAfiliado.get("/mostrar",async (req,res)=>{
  
 routerAfiliado.get("/mostrarUsuario/:user",async (req,res)=>{
     const {user} = req.params
-    const Usuario = await usuario.findById({_id:user}) 
+    const Usuario = await Mascotas.findById(user).populate('Propietario').populate("visitas") 
     console.log(Usuario)
     console.log(req.body) 
 
-    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrarUsuario","mostrarUsuario"),{usuario:Usuario,
-    telefono:`N. Telefono`,
-    cedula:`N. Cedula`,
-    correo:`Correo Electronico`
-
+    res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrarUsuario","mostrarUsuario.mustache"),{usuario:Usuario,
     })
 })
 
@@ -63,7 +59,7 @@ routerAfiliado.get("/interfaz_veterinario",verifyTokenVeterinarian,(req,res)=>{
         mostrar:"/mostrar"
     })
 })
-routerAfiliado.post("/signInVeterinarian",checkExistingUser,singinveterinaria)
+routerAfiliado.post("/signInVeterinarian",singinveterinaria)
 // routerAfiliado.post("/signInVeterinarian",singinveterinaria)
 routerAfiliado.post("/api/agregarUsuarioMascota",agregarUsuarioyMascota)
 

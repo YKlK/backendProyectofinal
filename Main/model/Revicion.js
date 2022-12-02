@@ -5,7 +5,7 @@ const enfermedades = mongoose.Schema({
     Enfermedades:[String],
     Alergias:[String],
     cirugias:[String],
-    Fecha
+    Fecha:Date
 },{
     versionKey : false
 })

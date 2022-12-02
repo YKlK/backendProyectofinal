@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mostrar</title>
-        <link rel="stylesheet" href="stylemostrarUsuarioUnico.css">
+        <link rel="stylesheet" href="./stylemostrarUsuarioUnico.css">
     </head>
     <body>
         <h1 class="titulo">Mostrar Usuarios</h1>
@@ -14,27 +14,34 @@
             <table class="content-table">
                 <thead>
                     <tr>
-                        <th>N°</th>
+                        
                         <th>Id</th>
                         <th>N. Usuario</th>
                         <th>N. Telefono</th>
                         <th>N. Cedula</th>
                         <th>Correo Electrico</th>
                         <th>N. Mascota</th>
+                        <th>tamaño</th>
                         <th>Tipo</th>
+                        <th>Peso</th>
+                        <th>Raza</th>
                     </tr>
                 </thead>
                 <tbody>
                 {{#usuario}}
                     <tr>
-                        <td></td>
+                        
                         
                         <td><b>{{_id}}</b></td>
+                        <td><b>{{Propietario.Nombre}}</b></td>
+                        <td><b>{{Propietario.telefono}}</b></td>
+                        <td><b>{{Propietario.Cedula}}</b></td>
+                        <td><b>{{Propietario.CorreoElectronico}}</b></td>
                         <td><b>{{Nombre}}</b></td>
-                        <td><b>{{telefono}}</b></td>
-                        <td><b>{{Cedula}}</b></td>
-                        <td><b>{{CorreoElectronico}}</b></td>
-                        
+                        <td><b>{{tamano}}</b></td>
+                        <td><b>{{Tipo}}</b></td>
+                        <td><b>{{Peso}}</b></td>
+                        <td><b>{{Raza}}</b></td>
                         
                         <!--{{#mascota}}
                         <td><b>{{Nombre}}</b></td>
@@ -45,6 +52,5 @@
                 </tbody>
             </table>
         </div>
-        <script type="text/javascript" src="./mostrarlorealecodigo.js"></script>
     </body>
 </html>

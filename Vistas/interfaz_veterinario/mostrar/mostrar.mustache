@@ -12,6 +12,11 @@
     </head>
     <body>
         <h1 class="titulo">Mostrar Usuarios</h1>
+        <div class="content-search">
+            <!-- Buscar id -->
+            <input id="icel" type="search" name="id" placeholder="Cédula del Usuario" class="sg8">
+            <input type="submit" value="Buscar" class="btn">
+        </div>
         <div class="container">
             <table class="content-table">
                 <thead>
@@ -19,20 +24,21 @@
                         <th>Id</th>
                         <th>N. Usuario</th>
                         <th>N. Mascota</th>
-                        <th>Tipo</th>
+                        <th>Cedula</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                {{#usuario}}
                     <tr>
-                        {{#usuario}}
-                        <td data-label="Id"><b>{{_id}}</b></td>
-                        <td data-label="N. Usuario"><b>{{Nombre}}</b></td>
+                       
+                        <td data-label="Id"><a href="/mostrarUsuario/{{_id}}">Ver</a></td>
+                        <td data-label="N. Usuario"><b>{{Propietario.Nombre}}</b></td>
                      
                         
-                        <td data-label="N. Mascota"><b>{{tamano}}</b></td>
-                        <td data-label="Tipo"><b>{{color}}</b></td>
+                        <td data-label="N. Mascota"><b>{{Nombre}}</b></td>
+                        <td data-label="Cedula"><b>{{Propietario.Cedula}}</b></td>
                         <td>
                             <b>
                                 <a href="/interfaz_veterinario/editar/index.html" target="iframe_crud">
@@ -46,9 +52,10 @@
                                     <button class="btns"><span> Eliminar</span></button>
                                 </a>
                             </b>
-                        </td>
-                        {{/usuario}}
+                        </td> 
                     </tr>
+                        {{/usuario}}
+                   
                 </tbody>
             </table>
         </div>

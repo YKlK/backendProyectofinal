@@ -61,6 +61,10 @@ app.use(express.static(join(__dirname,"..","Vistas")));
 app.use(express.static(join(__dirname,"..","Vistas","img")));
 app.use(express.static(join(__dirname,"..","Vistas","landing")));
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_veterinario")))
+app.use(express.static(join(__dirname,"..","Vistas","interfaz_veterinario","mostrar")))
+app.use(express.static(join(__dirname,"..","Vistas","interfaz_veterinario","agregar")))
+app.use(express.static(join(__dirname,"..","Vistas","interfaz_veterinario","editar")))
+app.use(express.static(join(__dirname,"..","Vistas","interfaz_veterinario","eliminar")))
 app.use(express.static(join(__dirname,"..","Vistas","Login_Veterinaria_User")));
 app.use(express.static(join(__dirname,"..","Vistas","Admin")));
 app.use(express.static(join(__dirname,"..","Vistas","interfaz_usuario")))
