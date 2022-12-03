@@ -1,6 +1,10 @@
 import Usuarios from "../model/usuario.js"
 import jwt from "jsonwebtoken";
- 
+import { dirname , join} from 'node:path';
+import { fileURLToPath } from 'url';
+const __filename = new URL('', import.meta.url).pathname;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
   export const singinUser = async (req,res)=>{
     const userFound = await Usuarios.findOne({CorreoElectronico:req.body.CorreoElectronico});
   
@@ -120,57 +124,5 @@ export const deleteusuarioById = async (req, res) => {
     res.status(401).json();
   }};
 
-  export const cambiarContra =async (req,res)=>{
-    try{
-        
-        const {password,password2,corrector} = req.body
 
-        const {tokenUser} = req.cookies
-        if(!corrector) return res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:"contraseñas dispares",action:"/cambiarcontra"})
-        if(password!=password2) return res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:"contraseñas dispares",action:"/cambiarcontra"})
-        if(!tokenUser) return res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:" brother primero debes iniciar seccion .-.",action:"/signInUser"})
-        
-        const decode = jwt.verify(tokenUser,process.env.secretuser)
-        const usaux = await usuario.findById(decode.id)
-        const us = await usuario.findByIdAndUpdate(decode.id,{Nombre: usaux.Nombre,
-            Edad: usaux.Edad,
-            Direccion : usaux.Direccion,
-            telefono: usaux.telefono,
-            Cedula: usaux.Cedula,
-            CorreoElectronico: usaux.CorreoElectronico,
-            Contrasena: password,
-            }
-        
-    ,{
-        new: true,
-      }) 
-      res.send("ok")
-    }catch(err){
-      res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`algo salio mal intentelo mas tarde o contacte con su proveedor de esto: ${err}`,action:"/contacta"})
 
-    }
-
-}
-
-export const perfilUser = async (req,res)=>{
-  try{
-  const veryfy = jwt.verify(req.cookies.tokenUser,process.env.secretuser)
-  const user = await usuario.findById(veryfy.id)
-  console.log(user)
-  const {Nombre,
-  Edad,
-  Direccion,
-  telefono,
-  Cedula,
-  CorreoElectronico} = user
-  res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","perfil","perfil.mustache"),{Nombre,
-      Edad,
-      Direccion,
-      telefono,
-      Cedula,
-      CorreoElectronico})
-  }catch(err){
-    res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`algo salio mal intentelo mas tarde o contacte con su proveedor de esto: ${err}`,action:"/contacta"})
-      
-  }
-}

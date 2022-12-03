@@ -2,11 +2,11 @@ import Veterinarias from "../model/Veterinarias.js"
 import usuario from "../model/usuario.js"
 import Mascotas from "../model/Mascotas.js";
 import jwt from "jsonwebtoken";
-import { fileURLToPath } from 'url';
 import transporter from "../config/Emails.js";
-import { join ,dirname} from "path";
+import { dirname , join} from 'node:path';
+import { fileURLToPath } from 'url';
+const __filename = new URL('', import.meta.url).pathname;
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
 
 
 export const singinveterinaria = async (req,res) => {

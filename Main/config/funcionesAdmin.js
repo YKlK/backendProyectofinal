@@ -2,6 +2,11 @@ import Admin from "../model/Admin.js"
 import usuario from "../model/usuario.js"
 import Veterinarias from "../model/Veterinarias.js"
 import jwt from "jsonwebtoken";
+import { dirname , join} from 'node:path';
+import { fileURLToPath } from 'url';
+const __filename = new URL('', import.meta.url).pathname;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 export const singinAdmin = async(req,res)=>{
   try{
   if(req.cookies.tokenAdmin) res.clearCookie("tokenAdmin")
