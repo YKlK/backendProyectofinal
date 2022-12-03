@@ -13,8 +13,10 @@
     <body>
         <div class="container">
             <form action="/nuevaVisita" method="POST">
+                <label for="i-r-vac">Cedula Del Usuario</label>
+                <input id="i-r-vac" type="text" name="Cedula" placeholder="000-0000000-0" pattern="[0-9]{3}-[0-9]{7}-[0-9]{1}">
                 <label for="i-re-vac">Record de Vacunas</label>
-                <input id="i-re-vac" type="text" name="record-de-vacunas">
+                <input id="i-re-vac" type="text" name="recordDeVacunas">
                 <label for="ienf">Enfermedades</label>
                 <input id="ienf" type="text" name="enfermedades">
                 <label for="ialer">Alergias</label>
