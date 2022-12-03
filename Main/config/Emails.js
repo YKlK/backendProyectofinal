@@ -3,7 +3,7 @@ import nodemailer from "nodemailer"
 
 
  const transporter = async(Nombre,Email,Asunto,Mensaje)=>{
-
+  try{
     const testAccount = await nodemailer.createTestAccount();
     const trans = await nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -35,6 +35,9 @@ if (error) {
   console.log('Email sent: ' + info.response);
 }
 });
-
+  }
+  catch(err){
+    console.log(err)
+  }
 }
     export default transporter

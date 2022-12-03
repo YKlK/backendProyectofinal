@@ -25,3 +25,10 @@ route.get("/logOut",(req,res)=>{
     res.redirect("/")
 })
 
+route.get("/Message",(req,res)=>{
+    const {mensaje,action}=req.body
+    res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"))
+})
+route.get("/contacta",(req,res)=>{
+    res.render(join(__dirname,"..","..","Vistas","contacta","contacta.mustache"))
+})

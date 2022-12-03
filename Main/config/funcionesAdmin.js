@@ -3,6 +3,7 @@ import usuario from "../model/usuario.js"
 import Veterinarias from "../model/Veterinarias.js"
 import jwt from "jsonwebtoken";
 export const singinAdmin = async(req,res)=>{
+  try{
   if(req.cookies.tokenAdmin) res.clearCookie("tokenAdmin")
   if(req.cookies.tokenVeterinaria) res.clearCookie("tokenVeterinaria")
   if(req.cookies.tokenUser) res.clearCookie("tokenUser")
@@ -34,6 +35,9 @@ export const singinAdmin = async(req,res)=>{
     httpOnly:true
   })
 
-  res.redirect("/")
+  res.redirect("/")}catch(err){
+    res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`Dios mio ni cuanta pruebas :c : ${err}`,action:"/aquiensinoami"})
+      
+  }
 }
 

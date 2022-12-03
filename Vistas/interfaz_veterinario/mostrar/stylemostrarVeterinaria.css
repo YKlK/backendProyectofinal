@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
  form input[type="text"]{
+    width: 0;
     display: inline;
     visibility: hidden;
     width: 0;

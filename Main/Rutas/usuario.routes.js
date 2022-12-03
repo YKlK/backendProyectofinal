@@ -4,8 +4,8 @@ import {dirname,join} from "node:path"
 import { fileURLToPath } from 'url';
 import usuario from "../model/usuario.js";
 import jwt from "jsonwebtoken";
-import { verifyTokenUser } from "../middleware/authJwt.js";
-import { token } from "morgan";
+import { verifyTokenUser } from "./../middleware/authJwt.js";
+import {cambiarContra,perfilUser} from "./../config/funcionesUser.js"
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const router = Router()
 
@@ -23,7 +23,7 @@ router.get("/signInUser",(req,res)=>{
     })
 })
 
-router.get("/GPSDog",(req,res)=>{
+router.get("/GPSDog",verifyTokenUser,(req,res)=>{
     const id = jwt.verify(req.cookies.tokenUser,process.env.secretuser)
 
     res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","GPSMASCOTA","GPSmap.mustache"),{
@@ -33,60 +33,15 @@ router.get("/GPSDog",(req,res)=>{
 
 router.get("/mapDog",verifyTokenUser,(req,res)=>{
     const id = jwt.verify(req.cookies.tokenUser,process.env.secretuser)
-
     res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","ubicacion","map.mustache"),{
         room:id.id
     })
 })
 
-router.post("/cambiarcontra",verifyTokenUser,async (req,res)=>{
-    try{
-        
-        const {password,password2,corrector} = req.body
+router.post("/cambiarcontra",verifyTokenUser,cambiarContra)
 
-        const {tokenUser} = req.cookies
-        if(!corrector) return res.send("mal")
-        if(password!=password2) return res.redirect("/malacontraseña")
-        if(!tokenUser) return res.redirect("/sintoken")
-        
-        const decode = jwt.verify(tokenUser,process.env.secretuser)
-        const usaux = await usuario.findById(decode.id)
-        const us = await usuario.findByIdAndUpdate(decode.id,{Nombre: usaux.Nombre,
-            Edad: usaux.Edad,
-            Direccion : usaux.Direccion,
-            telefono: usaux.telefono,
-            Cedula: usaux.Cedula,
-            CorreoElectronico: usaux.CorreoElectronico,
-            Contrasena: password,
-            }
-        
-    ,{
-        new: true,
-      }) 
-      res.send("ok")
-    }catch(err){
-        console.log(err)
-    }
+router.get("/PerfilUser",verifyTokenUser,perfilUser)
 
-})
-
-router.get("/PerfilUser",verifyTokenUser,async (req,res)=>{
-    const veryfy = jwt.verify(req.cookies.tokenUser,process.env.secretuser)
-    const user = await usuario.findById(veryfy.id)
-    console.log(user)
-    const {Nombre,
-    Edad,
-    Direccion,
-    telefono,
-    Cedula,
-    CorreoElectronico} = user
-    res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","perfil","perfil.mustache"),{Nombre,
-        Edad,
-        Direccion,
-        telefono,
-        Cedula,
-        CorreoElectronico})
-})
 router.get("/interfaz_usuario",verifyTokenUser,(req,res)=>{
     res.render(join(__dirname,"..","..","Vistas","interfaz_usuario","interfaz-usuario.mustache"),{
         PerfilUser:"/PerfilUser",

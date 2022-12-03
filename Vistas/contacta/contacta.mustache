@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../landing/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <footer id="contacto" style="height: 100vh;">
+            <div class="contenedor">
+                <form action="/api/sendemail" method="POST" class="form">
+                    <input class="input" type="text" name="nombre" id="" placeholder="Nombre" required>
+                    <input class="input" type="email" name="email" id="" placeholder="Email" required>
+                    <input class="input asunto" type="text" name="asunto" id="" placeholder="Asunto" required>
+                    <textarea class="input" name="mensaje" id="" cols="30" rows="10" placeholder="Mensaje" required></textarea>
+                    <input class="input" type="submit" value="Enviar">
+                </form>
+                <h2 class="desarrollador">- ©3JPI -</h2>
+            </div>
+        </footer>
+</body>
+</html>

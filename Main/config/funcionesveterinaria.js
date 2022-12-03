@@ -2,6 +2,10 @@ import Veterinarias from "../model/Veterinarias.js"
 import usuario from "../model/usuario.js"
 import Mascotas from "../model/Mascotas.js";
 import jwt from "jsonwebtoken";
+import { fileURLToPath } from 'url';
+import transporter from "../config/Emails.js";
+import { join ,dirname} from "path";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
 
@@ -148,9 +152,114 @@ export const singinveterinaria = async (req,res) => {
             Peso:peso,})
 
           
-            res.redirect("/agregaralgo")
+            res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:"usuario guardado correctamente",action:"/mostrar"})
           }
           catch(err){
-            res.status(401).json(err);}
+            res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:"algo salio mal intentelo mas tarde o contacte con su proveedor",action:"/contacta"});}
         }
   
+export const nuevaVisita = async (req,res)=>{
+  try{
+      const {Cedula,recordDeVacunas,enfermedades,alergia,cirugias} = req.body
+
+      const usAux = await usuario.findOne({"Cedula":Cedula})
+      console.log(usAux)
+      const dogAux = await Mascotas.findOne({"Propietario":usAux._id}).populate("Propietario")
+      console.log(dogAux)
+      const visita = await Revicion.create({
+          RecordVacunas:recordDeVacunas,
+          Enfermedades:enfermedades,
+          Alergias:alergia,
+          cirugias:cirugias,
+          Visitante:dogAux,
+          Fecha:Date.now()
+      })
+      console.log(visita)
+      res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:"visita guardada con exito",action:"/mostrar"})
+  }
+  catch(err){
+      
+      res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`algo salio mal intentelo mas tarde o contacte con su proveedor de esto: ${err}`,action:"/contacta"})
+  }
+  
+}
+
+export const eliminar = async(req,res)=>{
+  try{
+  const {id} =req.body;
+
+  const elimM = await Mascotas.findByIdAndRemove(id)
+  const elimU = await usuario.findByIdAndRemove(elimM.Propietario)
+  console.log(elimM)
+  res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:"usuario eliminado con exito",action:"/mostrar"})
+  }
+  catch(err){
+    res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`algo salio mal intentelo mas tarde o contacte con su proveedor de esto: ${err}`,action:"/contacta"})
+
+  }
+
+}
+
+export const editar = async (req,res)=>{
+  try{
+      const {cedula,username,edad,direccion,telefono,cedula2,email,nombreAnimal,raza,tipo,tamano,color,peso} = req.params
+
+      
+      console.log(cedula)
+      const useaux = await usuario.findOneAndUpdate({"Cedula":cedula},{
+
+          Nombre: username,
+          Edad: edad,
+          Direccion : direccion,
+          telefono: telefono,
+          Cedula: cedula2,
+          CorreoElectronico: email,
+          Contrasena: cedula,
+
+      },{
+          new: true,
+        })
+        console.log(useaux)
+      const mascot = await Mascotas.findOneAndUpdate({"Propietario.Cedula":cedula},{
+          Nombre:nombreAnimal,
+          Propietario:useaux._id,
+          tamano:tamano,
+          Color:color,
+          Raza:raza,
+          Tipo:tipo,
+          Peso:peso
+      },{
+          new: true,
+        })
+      res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:"usuario editado correctamente",action:"/mostrar"})
+  }
+  catch(err){
+    res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`algo salio mal intentelo mas tarde o contacte con su proveedor de esto: ${err}`,action:"/contacta"})
+      
+  }
+}
+
+export const mostrar = async (req,res)=>{
+  const {cedula} = req.query
+  if(cedula){
+      try{
+      const us = await usuario.findOne({Cedula:cedula})
+      const mascota = await Mascotas.findOne({'Propietario':us._id}).populate('Propietario')
+      console.log(mascota)
+      console.log(req.query) 
+      res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario:mascota})}
+      catch(err){
+        res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`algo salio mal intentelo mas tarde o contacte con su proveedor de esto: ${err}`,action:"/contacta"})
+          
+      }
+  }
+  else{
+      try{
+      const mascota = await Mascotas.find().populate('Propietario')
+      res.render(join(__dirname,"..","..","Vistas","interfaz_veterinario","mostrar","mostrar"),{usuario:mascota})}
+      catch(err){
+        res.render(join(__dirname,"..","..","Vistas","Message","mensaje.mustache"),{mensaje:`algo salio mal intentelo mas tarde o contacte con su proveedor de esto: ${err}`,action:"/contacta"})
+          
+      }
+
+  }}
