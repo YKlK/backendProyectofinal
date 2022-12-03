@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Modificar</title>
+        <title>Editar</title>
         <link rel="stylesheet" href="styleeditar.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,56 +13,49 @@
     <body>
         <h1 class="titulo">Editar Usuario</h1>
         <div class="top-bar">
-            <div class="content-search">
-                <!-- Buscar id -->
-                <!-- <h2>Buscar Usuario</h2> -->
-                <label for="iid">Id del Usuario</label>
-                <input id="iid" type="search" name="id" class="sg8" disabled>
-                <!-- <input type="submit" value="Buscar" class="btn"> -->
-            </div>
-            <form class="content" action="" method="">
+            <form class="content" action="/editar" method="post">
                 <!-- Usuario -->
                 <div class="content-user">
                     <h2>Usuario</h2>
+                    <label for="iname">ingresa la cedula del que deseas editar</label>
+                    <input id="iname" type="text" name="cedula" required>
                     <label for="iname">Nombre del Usuario</label>
-                    <input id="iname" type="text" name="nombre-usuario">
+                    <input id="iname" type="text" name="username" required>
                     <label for="iedad">Edad</label>
-                    <input id="iedad" type="number" name="edad">
+                    <input id="iedad" type="number" name="edad" required>
                     <label for="idirec">Dirección</label>
-                    <input id="idirec" type="text" name="direccion">
+                    <input id="idirec" type="text" name="direccion" required>
                     <label for="itel">Teléfono</label>
-                    <input id="itel" type="tel" name="telefono" maxlength="12" placeholder="000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    <input id="itel" required type="tel" name="telefono" placeholder="000-000-0000" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
                     <label for="iced">Cédula</label>
-                    <input id="iced" type="text" name="cedula" maxlength="13" placeholder="000-0000000-0" pattern="[0-9]{3}-[0-9]{7}-[0-9]{1}">
+                    <input id="iced" required type="text" name="cedula" placeholder="000-0000000-0" pattern="[0-9]{3}-[0-9]{7}-[0-9]{1}">
                     <label for="icor-el">Correo electrónico</label>
-                    <input id="icor-el" type="email" name="correo-electronico">
-                    <label for="ipass">Contraseña</label>
-                    <input id="ipass" type="text" name="contraseña">
+                    <input id="icor-el" required type="email" name="email">
+                    
                     <br>
+                    <div class="content-btn">
+                        <input type="submit" value="Crear Usuario" class="btn">
+                    </div>
                 </div>
                 <!-- Mascota -->
                 <div class="content-animal">
                     <h2>Mascota</h2>
                     <label for="iname">Nombre de la Mascota</label>
-                    <input id="iname" type="text" name="nombre-animal">
+                    <input id="iname" required type="text" name="nombreAnimal">
                     <label for="iraza">Raza</label>
-                    <input id="iraza" type="text" name="raza">
+                    <input id="iraza" type="text" required name="raza">
                     <label for="itype">Tipo</label>
-                    <input id="itype" type="text" name="tipo">
-                    <label for="ipeso">Peso</label>
-                    <input id="ipeso" type="number" name="peso">
-                    <label for="i-re-vac">Record de Vacunas</label>
-                    <input id="i-re-vac" type="text" name="record-de-vacunas">
-                    <label for="ienf">Enfermedades</label>
-                    <input id="ienf" type="text" name="enfermedades">
-                    <label for="ialer">Alergias</label>
-                    <input id="ialer" type="text" name="alergia">
+                    <input id="itype" type="text" required name="tipo">
+                    <label for="ipeso">tamaño</label>
+                    <input id="itype" type="text" required name="tamano">
+                    <label for="ipeso">color</label>
+                    <input id="itype" type="text" required name="color">
+                    <label for="ipeso">peso</label>
+                    <input id="ipeso" type="text" name="peso" required>
+                    
                     <br>
                 </div>
             </form>
-            <div class="content-btn">
-                <input type="submit" value="Editar Usuario" class="btn">
-            </div>
         </div>
     </body>
 </html>

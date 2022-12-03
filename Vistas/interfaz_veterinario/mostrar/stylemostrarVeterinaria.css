@@ -3,7 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+ form input[type="text"]{
+    display: inline;
+    visibility: hidden;
+    width: 0;
+}
 body {
     font-family: 'Quicksand', sans-serif;
     background: #11998e;  /* fallback for old browsers */
